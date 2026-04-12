@@ -2,235 +2,147 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Smart Attendance Dashboard</title>
-
   <script src="https://cdn.tailwindcss.com"></script>
-  
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  
-  <!-- external css file for custom styles -->
   <link rel="stylesheet" href="dashboard.css">
 </head>
 
 <body class="bg-slate-100 font-sans text-slate-900">
 
-<div class="min-h-screen">
-  <div class="flex min-h-screen">
+<div class="min-h-screen flex">
 
-    <!-- Sidebar -->
-    <aside class="w-72 bg-slate-900 text-white flex-col p-6">
-      <div class="mb-10">
-        <h1 class="text-3xl font-bold tracking-tight">AttendAI</h1>
-        <p class="text-sm text-slate-300 mt-1">Smart Attendance System</p>
-      </div>
-
-      <nav class="flex-1 flex flex-col gap-2">
-        <a href="#" class="rounded-xl px-4 py-3 hover:bg-slate-800 transition">Dashboard</a>
-        <a href="#" class="rounded-xl px-4 py-3 hover:bg-slate-800 transition">Attendance</a>
-        <a href="#" class="rounded-xl px-4 py-3 hover:bg-slate-800 transition">Profile</a>
-        <a href="#" class="rounded-xl px-4 py-3 hover:bg-slate-800 transition">Logout</a>
-      </nav>
-    </aside>
-
-    <!-- Main Content -->
-    <div class="flex-1 flex flex-col">
-  
-      <!-- Mobile top menu -->
-<!--      <div class="md:hidden bg-slate-900 text-white p-4">
-        <div class="flex items-center justify-between">
-          <div>
-            <h1 class="text-xl font-bold">AttendAI</h1>
-            <p class="text-xs text-slate-300">Smart Attendance System</p>
-          </div>
-          <button id="mobileMenuButton" class="rounded-lg bg-slate-800 px-3 py-2 text-sm">Menu</button>
-        </div>
-        <nav id="mobileMenu" class="mt-4 hidden flex-col gap-2">
-          <a href="#" class="block rounded-xl bg-slate-800 px-4 py-3">Dashboard</a>
-          <a href="#" class="block rounded-xl bg-slate-800 px-4 py-3">Attendance</a>
-          <a href="#" class="block rounded-xl bg-slate-800 px-4 py-3">Profile</a>
-          <a href="#" class="block rounded-xl bg-slate-800 px-4 py-3">Logout</a>
-        </nav>
-      </div>
-    -->
-    
-      <!-- Navbar -->
-      <header class="bg-white border-b border-slate-200 px-6 py-4 flex flex-col gap-4 md:flex-row md:items-center md:justify-between shadow-sm">
-        <div>
-          <h2 class="text-2xl font-semibold">Dashboard</h2>
-          <p class="text-sm text-slate-500">Welcome back, Ananya</p>
-        </div>
-
-        <div class="flex items-center gap-4">
-          
-          <button class="relative inline-flex items-center justify-center rounded-full bg-slate-100 p-3 text-slate-600 hover:bg-slate-200 transition">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V4a2 2 0 10-4 0v1.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-            </svg>
-            <span class="absolute -right-1 -top-1 h-2.5 w-2.5 rounded-full bg-rose-500 ring-2 ring-white"></span>
-          </button>
-          
-          <div class="flex items-center gap-3 rounded-full bg-slate-100 px-3 py-2">
-            <div class="h-10 w-10 rounded-full bg-gradient-to-br from-sky-500 to-indigo-500 flex items-center justify-center text-white font-semibold">A</div>
-            
-          <div>
-              <p class="text-sm font-medium">Ananaya Arora</p>
-              <p class="text-xs text-slate-500">Student</p>
-            </div>
-          </div>
-        </div>
-      
-      </header>
-
-      <main class="flex-1 overflow-auto p-6">
-        <div class="space-y-6">
-
-          <!-- Overview Cards -->
-          <section class="grid gap-6 xl:grid-cols-4 lg:grid-cols-2 sm:grid-cols-1">
-          <!--  
-            <article class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
-              <p class="text-sm font-medium text-slate-500">Total Classes</p>
-              <p class="mt-4 text-3xl font-semibold">40</p>
-            </article>
-
-            <article class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
-              <p class="text-sm font-medium text-slate-500">Attended Classes</p>
-              <p class="mt-4 text-3xl font-semibold text-emerald-600">32</p>
-            </article>
-
-            <article class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
-              <p class="text-sm font-medium text-slate-500">Missed Classes</p>
-              <p class="mt-4 text-3xl font-semibold text-rose-600">8</p>
-            </article>
-
-            <article class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
-              <p class="text-sm font-medium text-slate-500">Attendance %</p>
-              <p class="mt-4 text-3xl font-semibold text-sky-600">80%</p>
-            </article>
-          -->
-
-            <div class="card">
-              <p>Total Classes</p>
-              <h3 id="totalClasses">40</h3>
-            </div>
-
-            <div class="card">
-              <p>Attended Classes</p>
-              <h3 id="attended">32</h3>
-            </div>
-
-            <div class="card">
-              <p>Missed Classes</p>
-              <h3 id="missed">8</h3>
-            </div>
-
-            <div class="card">
-              <p>Attendance Percentage</p>
-              <h3 id="percentage">80%</h3>
-            </div>
-          
-          </section>
-
-
-
-          <!-- Attendance Graph + Alerts -->
-          <section class="grid gap-6 lg:grid-cols-[2fr_1fr]">
-            
-            <!-- Graph -->
-            <div class="col-span-2 box">
-              <h3 class="title">Attendance Graph</h3>
-              <canvas id="attendanceChart"></canvas>
-            </div>
-            
-        <!--
-              <div class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
-                <div class="flex items-center justify-between">
-                  <div>
-                    <h3 class="text-lg font-semibold">Attendance Graph</h3>
-                    <p class="text-sm text-slate-500">Weekly attendance trend</p>
-
-                    <canvas id="attendanceChart"></canvas>
-
-                  </div>
-              -->      
-                <!--
-                <span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-600">Last 7 days</span>
-              </div>
-
-              <div class="mt-8 space-y-4">
-                <div class="h-48 rounded-3xl bg-gradient-to-r from-sky-500 via-cyan-400 to-indigo-500 p-4 text-white">
-                  <svg viewBox="0 0 320 120" class="h-full w-full">
-                    <polyline fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="4" points="0,100 50,90 100,50 150,60 200,40 250,55 300,20 320,18" />
-                    <circle cx="0" cy="100" r="4" fill="white" />
-                    <circle cx="50" cy="90" r="4" fill="white" />
-                    <circle cx="100" cy="50" r="4" fill="white" />
-                    <circle cx="150" cy="60" r="4" fill="white" />
-                    <circle cx="200" cy="40" r="4" fill="white" />
-                    <circle cx="250" cy="55" r="4" fill="white" />
-                    <circle cx="300" cy="20" r="4" fill="white" />
-                  </svg>
-                </div>
-
-                <div class="grid grid-cols-4 gap-4 text-center text-sm text-slate-700">
-                  <div>
-                    <p class="font-semibold">Mon</p>
-                    <p class="mt-2">80%</p>
-                  </div>
-                  <div>
-                    <p class="font-semibold">Tue</p>
-                    <p class="mt-2">72%</p>
-                  </div>
-                  <div>
-                    <p class="font-semibold">Wed</p>
-                    <p class="mt-2">85%</p>
-                  </div>
-                  <div>
-                    <p class="font-semibold">Thu</p>
-                    <p class="mt-2">90%</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          --> 
-            <aside class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
-              <div class="flex items-center gap-3">
-                <div class="rounded-2xl bg-rose-100 p-3 text-rose-600">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.723-1.36 3.488 0l5.516 9.815c.75 1.334-.213 2.986-1.744 2.986H4.485c-1.53 0-2.494-1.652-1.744-2.986L8.257 3.1zM11 13a1 1 0 10-2 0 1 1 0 002 0zm-.75-3.75a.75.75 0 00-1.5 0v2.5a.75.75 0 001.5 0v-2.5z" clip-rule="evenodd" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 id="alertTitle" class="text-lg font-semibold">Loading...</h3>
-                  <p id="alertDesc" class="mt-2 text-sm text-slate-600"></p>
-                </div>
-              </div>
-            </aside>
-
-          
-
-            <!-- Alert -->
-<!--          <div class="box">
-            <h3 class="title">Alert</h3>
-            <p id="alertText" class="text-red-500">Loading...</p>
-          </div>
--->
-          </section>
-        </div>
-      </main>
+  <!-- FIX: Added 'flex' class so flex-col works correctly on sidebar; hidden on mobile -->
+  <aside id="sidebar" class="w-72 bg-slate-900 text-white flex flex-col p-6 hidden md:flex">
+    <div class="mb-10">
+      <h1 class="text-3xl font-bold tracking-tight">AttendAI</h1>
+      <p class="text-sm text-slate-300 mt-1">Smart Attendance System</p>
     </div>
+
+    <nav class="flex-1 flex flex-col gap-2">
+      <!-- FIX: Nav links now point to actual pages or sections instead of "#" -->
+      <a href="dashboard.html" class="rounded-xl px-4 py-3 bg-slate-700 transition">Dashboard</a>
+      <a href="#attendance-section" class="rounded-xl px-4 py-3 hover:bg-slate-800 transition">Attendance</a>
+      <a href="#profile-section" class="rounded-xl px-4 py-3 hover:bg-slate-800 transition">Profile</a>
+      <!-- FIX: Logout now calls the logout function instead of doing nothing -->
+      <a href="#" onclick="handleLogout(event)" class="rounded-xl px-4 py-3 hover:bg-slate-800 transition text-rose-400">Logout</a>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="flex-1 flex flex-col">
+
+    <!-- FIX: Mobile top menu restored and functional -->
+    <div class="md:hidden bg-slate-900 text-white p-4">
+      <div class="flex items-center justify-between">
+        <div>
+          <h1 class="text-xl font-bold">AttendAI</h1>
+          <p class="text-xs text-slate-300">Smart Attendance System</p>
+        </div>
+        <button id="mobileMenuButton" class="rounded-lg bg-slate-800 px-3 py-2 text-sm">Menu</button>
+      </div>
+      <nav id="mobileMenu" class="mt-4 hidden flex-col gap-2">
+        <a href="dashboard.html" class="block rounded-xl bg-slate-700 px-4 py-3">Dashboard</a>
+        <a href="#attendance-section" class="block rounded-xl bg-slate-800 px-4 py-3">Attendance</a>
+        <a href="#profile-section" class="block rounded-xl bg-slate-800 px-4 py-3">Profile</a>
+        <a href="#" onclick="handleLogout(event)" class="block rounded-xl bg-slate-800 px-4 py-3 text-rose-400">Logout</a>
+      </nav>
+    </div>
+
+    <!-- Navbar -->
+    <header class="bg-white border-b border-slate-200 px-6 py-4 flex flex-col gap-4 md:flex-row md:items-center md:justify-between shadow-sm">
+      <div>
+        <h2 class="text-2xl font-semibold">Dashboard</h2>
+        <!-- FIX: Corrected typo "Ananaya" → "Ananya" -->
+        <p class="text-sm text-slate-500">Welcome back, Ananya</p>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <button class="relative inline-flex items-center justify-center rounded-full bg-slate-100 p-3 text-slate-600 hover:bg-slate-200 transition">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V4a2 2 0 10-4 0v1.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+          </svg>
+          <span class="absolute -right-1 -top-1 h-2.5 w-2.5 rounded-full bg-rose-500 ring-2 ring-white"></span>
+        </button>
+
+        <!-- FIX: Profile section given an id for nav anchor -->
+        <div id="profile-section" class="flex items-center gap-3 rounded-full bg-slate-100 px-3 py-2">
+          <div class="h-10 w-10 rounded-full bg-gradient-to-br from-sky-500 to-indigo-500 flex items-center justify-center text-white font-semibold">A</div>
+          <div>
+            <!-- FIX: Corrected typo "Ananaya" → "Ananya" -->
+            <p class="text-sm font-medium">Ananya Arora</p>
+            <p class="text-xs text-slate-500">Student</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="flex-1 overflow-auto p-6">
+      <div class="space-y-6">
+
+        <!-- Overview Cards -->
+        <section class="grid gap-6 xl:grid-cols-4 lg:grid-cols-2 sm:grid-cols-1">
+          <div class="card">
+            <p>Total Classes</p>
+            <h3 id="totalClasses">—</h3>
+          </div>
+          <div class="card">
+            <p>Attended Classes</p>
+            <h3 id="attended">—</h3>
+          </div>
+          <div class="card">
+            <p>Missed Classes</p>
+            <h3 id="missed">—</h3>
+          </div>
+          <div class="card">
+            <p>Attendance Percentage</p>
+            <h3 id="percentage">—</h3>
+          </div>
+        </section>
+
+        <!-- Attendance Graph + Alert -->
+        <!-- FIX: Changed to 2-column grid; removed incorrect col-span-2 from chart box -->
+        <section id="attendance-section" class="grid gap-6 lg:grid-cols-[2fr_1fr]">
+
+          <!-- Graph -->
+          <div class="box">
+            <h3 class="title">Attendance Graph</h3>
+            <canvas id="attendanceChart"></canvas>
+          </div>
+
+          <!-- Alert -->
+          <aside class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 flex flex-col justify-center">
+            <div class="flex items-start gap-3">
+              <div class="rounded-2xl bg-rose-100 p-3 text-rose-600 shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.723-1.36 3.488 0l5.516 9.815c.75 1.334-.213 2.986-1.744 2.986H4.485c-1.53 0-2.494-1.652-1.744-2.986L8.257 3.1zM11 13a1 1 0 10-2 0 1 1 0 002 0zm-.75-3.75a.75.75 0 00-1.5 0v2.5a.75.75 0 001.5 0v-2.5z" clip-rule="evenodd" />
+                </svg>
+              </div>
+              <div>
+                <h3 id="alertTitle" class="text-lg font-semibold">Loading...</h3>
+                <p id="alertDesc" class="mt-2 text-sm text-slate-600"></p>
+              </div>
+            </div>
+          </aside>
+
+        </section>
+      </div>
+    </main>
   </div>
 </div>
 
-<!-- MOBILE MENU TOGGLE SCRIPT
+<script src="dashboard.js"></script>
+
+<!-- FIX: Mobile menu toggle script restored -->
 <script>
   const mobileButton = document.getElementById('mobileMenuButton');
   const mobileMenu = document.getElementById('mobileMenu');
   mobileButton?.addEventListener('click', () => {
     mobileMenu.classList.toggle('hidden');
+    mobileMenu.classList.toggle('flex');
   });
 </script>
--->
 
-<!-- external js file for custom scripts -->
-<script src="dashboard.js"></script>
 </body>
 </html>
