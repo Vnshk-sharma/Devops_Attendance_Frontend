@@ -3,16 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <title>Smart Attendance Dashboard</title>
+
   <script src="https://cdn.tailwindcss.com"></script>
+  
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <!-- external css file for custom styles -->
+  <link rel="stylesheet" href="dashboard.css">
 </head>
 
 <body class="bg-slate-100 font-sans text-slate-900">
 
 <div class="min-h-screen">
-  <div class="md:flex md:min-h-screen">
+  <div class="flex min-h-screen">
 
     <!-- Sidebar -->
-    <aside class="hidden md:flex md:w-72 bg-slate-900 text-white flex-col p-6">
+    <aside class="w-72 bg-slate-900 text-white flex-col p-6">
       <div class="mb-10">
         <h1 class="text-3xl font-bold tracking-tight">AttendAI</h1>
         <p class="text-sm text-slate-300 mt-1">Smart Attendance System</p>
@@ -28,9 +34,9 @@
 
     <!-- Main Content -->
     <div class="flex-1 flex flex-col">
-
+  
       <!-- Mobile top menu -->
-      <div class="md:hidden bg-slate-900 text-white p-4">
+<!--      <div class="md:hidden bg-slate-900 text-white p-4">
         <div class="flex items-center justify-between">
           <div>
             <h1 class="text-xl font-bold">AttendAI</h1>
@@ -45,7 +51,8 @@
           <a href="#" class="block rounded-xl bg-slate-800 px-4 py-3">Logout</a>
         </nav>
       </div>
-
+    -->
+    
       <!-- Navbar -->
       <header class="bg-white border-b border-slate-200 px-6 py-4 flex flex-col gap-4 md:flex-row md:items-center md:justify-between shadow-sm">
         <div>
@@ -54,21 +61,24 @@
         </div>
 
         <div class="flex items-center gap-4">
+          
           <button class="relative inline-flex items-center justify-center rounded-full bg-slate-100 p-3 text-slate-600 hover:bg-slate-200 transition">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V4a2 2 0 10-4 0v1.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
             </svg>
             <span class="absolute -right-1 -top-1 h-2.5 w-2.5 rounded-full bg-rose-500 ring-2 ring-white"></span>
           </button>
-
+          
           <div class="flex items-center gap-3 rounded-full bg-slate-100 px-3 py-2">
             <div class="h-10 w-10 rounded-full bg-gradient-to-br from-sky-500 to-indigo-500 flex items-center justify-center text-white font-semibold">A</div>
-            <div>
+            
+          <div>
               <p class="text-sm font-medium">Ananaya Arora</p>
               <p class="text-xs text-slate-500">Student</p>
             </div>
           </div>
         </div>
+      
       </header>
 
       <main class="flex-1 overflow-auto p-6">
@@ -76,6 +86,7 @@
 
           <!-- Overview Cards -->
           <section class="grid gap-6 xl:grid-cols-4 lg:grid-cols-2 sm:grid-cols-1">
+          <!--  
             <article class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
               <p class="text-sm font-medium text-slate-500">Total Classes</p>
               <p class="mt-4 text-3xl font-semibold">40</p>
@@ -95,16 +106,53 @@
               <p class="text-sm font-medium text-slate-500">Attendance %</p>
               <p class="mt-4 text-3xl font-semibold text-sky-600">80%</p>
             </article>
+          -->
+
+            <div class="card">
+              <p>Total Classes</p>
+              <h3 id="totalClasses">40</h3>
+            </div>
+
+            <div class="card">
+              <p>Attended Classes</p>
+              <h3 id="attended">32</h3>
+            </div>
+
+            <div class="card">
+              <p>Missed Classes</p>
+              <h3 id="missed">8</h3>
+            </div>
+
+            <div class="card">
+              <p>Attendance Percentage</p>
+              <h3 id="percentage">80%</h3>
+            </div>
+          
           </section>
+
+
 
           <!-- Attendance Graph + Alerts -->
           <section class="grid gap-6 lg:grid-cols-[2fr_1fr]">
-            <div class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
-              <div class="flex items-center justify-between">
-                <div>
-                  <h3 class="text-lg font-semibold">Attendance Graph</h3>
-                  <p class="text-sm text-slate-500">Weekly attendance trend</p>
-                </div>
+            
+            <!-- Graph -->
+            <div class="col-span-2 box">
+              <h3 class="title">Attendance Graph</h3>
+              <canvas id="attendanceChart"></canvas>
+            </div>
+            
+        <!--
+              <div class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+                <div class="flex items-center justify-between">
+                  <div>
+                    <h3 class="text-lg font-semibold">Attendance Graph</h3>
+                    <p class="text-sm text-slate-500">Weekly attendance trend</p>
+
+                    <canvas id="attendanceChart"></canvas>
+
+                  </div>
+              -->      
+                <!--
                 <span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-600">Last 7 days</span>
               </div>
 
@@ -142,7 +190,7 @@
                 </div>
               </div>
             </div>
-
+          --> 
             <aside class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
               <div class="flex items-center gap-3">
                 <div class="rounded-2xl bg-rose-100 p-3 text-rose-600">
@@ -151,11 +199,20 @@
                   </svg>
                 </div>
                 <div>
-                  <h3 class="text-lg font-semibold">Attendance below 75%</h3>
-                  <p class="mt-2 text-sm text-slate-600">Your attendance needs attention to reach the required threshold.</p>
+                  <h3 id="alertTitle" class="text-lg font-semibold">Loading...</h3>
+                  <p id="alertDesc" class="mt-2 text-sm text-slate-600"></p>
                 </div>
               </div>
             </aside>
+
+          
+
+            <!-- Alert -->
+<!--          <div class="box">
+            <h3 class="title">Alert</h3>
+            <p id="alertText" class="text-red-500">Loading...</p>
+          </div>
+-->
           </section>
         </div>
       </main>
@@ -163,6 +220,7 @@
   </div>
 </div>
 
+<!-- MOBILE MENU TOGGLE SCRIPT
 <script>
   const mobileButton = document.getElementById('mobileMenuButton');
   const mobileMenu = document.getElementById('mobileMenu');
@@ -170,6 +228,9 @@
     mobileMenu.classList.toggle('hidden');
   });
 </script>
+-->
 
+<!-- external js file for custom scripts -->
+<script src="dashboard.js"></script>
 </body>
 </html>

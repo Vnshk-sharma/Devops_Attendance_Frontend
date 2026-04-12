@@ -1,0 +1,59 @@
+/* Sidebar links */
+.nav-link {
+  padding: 12px;
+  border-radius: 10px;
+  transition: 0.2s;
+}
+
+.nav-link:hover {
+  background: #1e293b;
+}
+
+/* Cards */
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  transition: 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.03);
+}
+
+/* Boxes */
+.box {
+  background: white;
+  padding: 20px;
+  border-radius: 16px;
+}
+
+/* Titles */
+.title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+/* Profile */
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #f1f5f9;
+  padding: 6px 10px;
+  border-radius: 50px;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(to right, #38bdf8, #6366f1);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-weight: bold;
+}
