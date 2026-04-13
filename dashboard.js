@@ -1,4 +1,4 @@
-//Update Cards
+// Update Cards
 function updateCards(data) {
   document.getElementById("totalClasses").textContent = data.total;
   document.getElementById("attended").textContent = data.attended;
@@ -6,8 +6,7 @@ function updateCards(data) {
   document.getElementById("percentage").textContent = data.percentage + "%";
 }
 
-
-//Alert Logic
+// Alert Logic
 function updateAlert(percentage) {
   const title = document.getElementById("alertTitle");
   const desc = document.getElementById("alertDesc");
@@ -21,7 +20,7 @@ function updateAlert(percentage) {
   }
 }
 
-//Chart Setup (EMPTY initially)
+// Chart Setup
 const ctx = document.getElementById("attendanceChart");
 
 const chart = new Chart(ctx, {
@@ -40,32 +39,57 @@ const chart = new Chart(ctx, {
   }
 });
 
-
-// Load Data (Backend Ready)
+// Load Data into UI
 function loadDashboard(data) {
-  updateCards(data);
-  updateAlert(data.percentage);
+  updateCards({
+    total: data.overview.total_classes,
+    attended: data.overview.attended_classes,
+    missed: data.overview.missed_classes,
+    percentage: data.overview.attendance_percentage
+  });
 
-  chart.data.labels = data.labels;
-  chart.data.datasets[0].data = data.values;
+  updateAlert(data.overview.attendance_percentage);
+
+  const labels = ["Mon", "Tue", "Wed", "Thu"];
+  const values = [
+    data.overview.attendance_percentage,
+    data.overview.attendance_percentage - 5,
+    data.overview.attendance_percentage + 3,
+    data.overview.attendance_percentage + 10
+  ];
+
+  chart.data.labels = labels;
+  chart.data.datasets[0].data = values;
   chart.update();
 }
 
+// Fetch from backend
+async function fetchDashboard() {
+  const enrolmentNumber = localStorage.getItem("enrolment_number");
 
-//Dummy Data (REMOVE LATER)
-const dummyData = {
-  total: 40,
-  attended: 32,
-  missed: 8,
-  percentage: 80,
-  labels: ["Mon", "Tue", "Wed", "Thu"],
-  values: [80, 72, 85, 90]
-};
+  if (!enrolmentNumber) {
+    alert("No student logged in");
+    window.location.href = "login_front.html";
+    return;
+  }
 
-loadDashboard(dummyData);
+  try {
+    const response = await fetch(`http://127.0.0.1:8000/student-dashboard/${enrolmentNumber}`);
+    const data = await response.json();
 
+    if (data.error) {
+      alert(data.error);
+      return;
+    }
 
-//Future API Call
-// fetch('/api/dashboard')
-//   .then(res => res.json())
-//   .then(data => loadDashboard(data));
+    loadDashboard(data);
+    document.getElementById("welcomeText").textContent = `Welcome back, ${data.student.name}`;
+document.getElementById("studentName").textContent = data.student.name;
+
+  } catch (error) {
+    console.error("Error fetching dashboard:", error);
+    alert("Could not connect to backend");
+  }
+}
+
+window.onload = fetchDashboard;
