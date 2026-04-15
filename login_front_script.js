@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
 function showSignup() {
     document.getElementById("loginForm").style.display = "none";
     document.getElementById("signupForm").style.display = "block";
@@ -40,3 +41,5 @@ function signup() {
     .then(res => res.json())
     .then(data => alert(data.message));
 }
+=======
+>>>>>>> bef8d52800c66a41351f33597364b91d380de233
