@@ -77,10 +77,67 @@ async function fetchDashboard() {
     const response = await fetch(`http://127.0.0.1:8000/student-dashboard/${enrolmentNumber}`);
     const data = await response.json();
 
+<<<<<<< HEAD
     if (data.error) {
       alert(data.error);
       return;
     }
+=======
+//Date & Attendance Logic
+function getTodayDate() {
+  return new Date().toISOString().split("T")[0]; // YYYY-MM-DD
+}
+
+function isAttendanceMarkedToday() {
+  const lastMarked = localStorage.getItem("attendanceDate");
+  return lastMarked === getTodayDate();
+}
+
+//Button State Logic
+function updateButtonState() {
+  const markBtn = document.getElementById("markAttendanceBtn");
+
+  if(!markBtn) return; // Safety check
+
+  if (isAttendanceMarkedToday()) {
+    markBtn.disabled = true;
+    markBtn.textContent = "Marked ✅";
+
+    markBtn.className =
+      "bg-gray-400 text-white px-4 py-2 rounded-xl text-sm font-medium cursor-not-allowed";
+  } else {
+    markBtn.disabled = false;
+    markBtn.textContent = "Mark Attendance";
+
+    markBtn.className =
+      "bg-gradient-to-r from-indigo-500 to-blue-600 text-white px-4 py-2 rounded-xl text-sm font-medium hover:scale-105 transition";
+  }
+}
+
+//Button Click Logic
+const markBtn = document.getElementById("markAttendanceBtn");
+
+markBtn.addEventListener("click", () => {
+  const today = getTodayDate();
+
+  // Save in localStorage (temporary)
+  localStorage.setItem("attendanceDate", today);
+
+  // Update stats
+  dummyData.total += 1;
+  dummyData.attended += 1;
+  dummyData.percentage = Math.round(
+    (dummyData.attended / dummyData.total) * 100
+  );
+
+  // Update UI
+  loadDashboard(dummyData);
+  updateButtonState();
+});
+
+//Initial Button State
+updateButtonState();
+>>>>>>> 53f5b4d (Added mark attendence Button)
 
     loadDashboard(data);
     document.getElementById("welcomeText").textContent = `Welcome back, ${data.student.name}`;
