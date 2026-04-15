@@ -2,39 +2,52 @@
 <html>
 <head>
     <title>Attendance App</title>
-    <link rel="stylesheet" href="login_front_design.css">
+    <link rel="stylesheet" href="D:\Devops_Frontend\login_front_design.css">
 
     
 </head>
 <body>
 
 <div class="container">
+  <h2 id="title">Login</h2>
 
-    <!-- LOGIN FORM -->
-    <div id="loginForm">
-        <h3>Login</h3>
-        <input type="text" id="loginEnroll" placeholder="Enrolment Number">
-        <input type="password" id="loginPassword" placeholder="Password">
-        <button onclick="login()">Login</button>
-        <div class="toggle" onclick="showSignup()">Sign Up</div>
+  <form onsubmit="handleSubmit(event)">
+
+    <div class="input-box">
+      <input type="text" required id="name" placeholder="Full Name">
     </div>
 
-    <!-- SIGNUP FORM -->
-    <div id="signupForm" style="display:none;">
-        <h3>Sign Up</h3>
-        <input type="text" id="name" placeholder="Name">
-        <input type="text" id="enrolment" placeholder="Enrolment Number">
-        <input type="text" id="branch" placeholder="Branch">
-        <input type="email" id="email" placeholder="College Email">
-        <input type="text" id="semester" placeholder="Semester">
-        <input type="password" id="password" placeholder="Password">
-        <button onclick="signup()">Register</button>
-        <div class="toggle" onclick="showLogin()">Back to Login</div>
+    <div class="input-box">
+      <input type="text" required id="enrollment" placeholder="Enrollment Number">
     </div>
 
+    <div class="input-box">
+      <select id="batch" required>
+        <option value="" disabled selected>Select Batch</option>
+        <option value="IT1">IT1</option>
+        <option value="IT2">IT2</option>
+        <option value="AIML">AIML</option>
+      </select>
+    </div>
+
+    <div id="extraFields" class="hidden">
+      <div class="input-box">
+        <input type="email" placeholder="Email">
+      </div>
+    </div>
+
+    <button type="submit" id="submitBtn">Login</button>
+  </form>
+
+  <div class="toggle">
+    <span id="toggleText">Don't have an account?</span>
+    <span onclick="toggleMode()" id="toggleBtn">Sign Up</span>
+  </div>
 </div>
 
-<script src="login_front_script.js"></script>
+
 
 </body>
+
+<script src="login_front_script.js"></script>
 </html>
