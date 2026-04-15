@@ -11,7 +11,7 @@ function showLogin() {
 
 // 🔐 LOGIN
 function login() {
-    fetch("https://smart-attend-dfb9.onrender.com/login", {
+    fetch("https://devops-attendance-backend-8pri.onrender.com/login", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
@@ -25,7 +25,7 @@ function login() {
 
 // 📝 SIGNUP
 function signup() {
-    fetch("https://smart-attend-dfb9.onrender.com/signup", {
+    fetch("https://devops-attendance-backend-8pri.onrender.com/signup", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
