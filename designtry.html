@@ -1,9 +1,8 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- FIX: Removed markdown code fences (```html / ```) that made this an invalid HTML file -->
   <title>Smart Attendance Login</title>
   <style>
     body {
@@ -35,7 +34,6 @@
       margin: 10px 0;
       border: 1px solid #ccc;
       border-radius: 5px;
-      box-sizing: border-box;
     }
 
     .login-box button {
@@ -68,23 +66,14 @@
 
   <div class="login-box">
     <h2>Smart Attendance</h2>
-    <!-- FIX: Placeholder design — wire up to real auth or replace with login_front.html -->
-    <form onsubmit="handleLogin(event)">
-      <input type="text" id="username" placeholder="Username" required>
-      <input type="password" id="password" placeholder="Password" required>
+    <form>
+      <input type="text" placeholder="Username" required>
+      <input type="password" placeholder="Password" required>
       <button type="submit">Login</button>
     </form>
     <p>Forgot password? <a href="#">Click here</a></p>
   </div>
 
-  <script>
-    function handleLogin(e) {
-      e.preventDefault();
-      // TODO: Replace with real API call
-      // fetch('/api/login', { method: 'POST', body: JSON.stringify({...}) })
-      alert("Login functionality coming soon.");
-    }
-  </script>
-
 </body>
 </html>
+```

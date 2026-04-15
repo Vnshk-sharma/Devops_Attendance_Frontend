@@ -1,5 +1,4 @@
 
-<<<<<<< HEAD
 function showSignup() {
     document.getElementById("loginForm").style.display = "none";
     document.getElementById("signupForm").style.display = "block";
@@ -13,6 +12,7 @@ function showLogin() {
 // 🔐 LOGIN
 function login() {
     fetch("https://devops-attendance-backend-8pri.onrender.com/login", {
+
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
@@ -26,7 +26,9 @@ function login() {
 
 // 📝 SIGNUP
 function signup() {
+
     fetch("https://devops-attendance-backend-8pri.onrender.com/signup", {
+
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
@@ -41,5 +43,4 @@ function signup() {
     .then(res => res.json())
     .then(data => alert(data.message));
 }
-=======
->>>>>>> bef8d52800c66a41351f33597364b91d380de233
+
