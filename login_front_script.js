@@ -1,24 +1,42 @@
-let isLogin = true;
 
-function toggleMode() {
-  isLogin = !isLogin;
-
-  document.getElementById("title").innerText = isLogin ? "Login" : "Create Account";
-  document.getElementById("submitBtn").innerText = isLogin ? "Login" : "Sign Up";
-  document.getElementById("extraFields").classList.toggle("hidden");
-
-  document.getElementById("toggleText").innerText = isLogin 
-    ? "Don't have an account?" 
-    : "Already have an account?";
-
-  document.getElementById("toggleBtn").innerText = isLogin ? "Sign Up" : "Login";
+function showSignup() {
+    document.getElementById("loginForm").style.display = "none";
+    document.getElementById("signupForm").style.display = "block";
 }
 
-function handleSubmit(e) {
-  e.preventDefault();
-  const name = document.getElementById("name").value;
-  const batch = document.getElementById("batch").value;
-
-  alert(`Welcome ${name} 🚀\nBatch: ${batch}`);
+function showLogin() {
+    document.getElementById("signupForm").style.display = "none";
+    document.getElementById("loginForm").style.display = "block";
 }
 
+// 🔐 LOGIN
+function login() {
+    fetch("https://smart-attend-dfb9.onrender.com/login", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+            enrolment: document.getElementById("loginEnroll").value,
+            password: document.getElementById("loginPassword").value
+        })
+    })
+    .then(res => res.json())
+    .then(data => alert(data.message));
+}
+
+// 📝 SIGNUP
+function signup() {
+    fetch("https://smart-attend-dfb9.onrender.com/signup", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+            name: document.getElementById("name").value,
+            enrolment: document.getElementById("enrolment").value,
+            branch: document.getElementById("branch").value,
+            email: document.getElementById("email").value,
+            semester: document.getElementById("semester").value,
+            password: document.getElementById("password").value
+        })
+    })
+    .then(res => res.json())
+    .then(data => alert(data.message));
+}
