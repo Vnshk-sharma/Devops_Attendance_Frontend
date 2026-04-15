@@ -1,56 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Classroom Login</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <!-- FIX: Use relative path instead of hardcoded Windows path -->
-  <link rel="stylesheet" href="login_front_design.css">
-</head>
 
+</head>
 <body>
 
 <div class="container">
-  <h2 id="title">Login</h2>
 
-  <form onsubmit="handleSubmit(event)">
 
-    <div class="input-box">
-      <input type="text" required id="name" placeholder="Full Name">
-    </div>
-
-    <div class="input-box">
-      <!-- FIX: Added pattern validation for enrollment number -->
-      <input type="text" required id="enrollment" placeholder="Enrollment Number" pattern="[A-Za-z0-9]+" title="Enter a valid enrollment number (letters and digits only)">
-    </div>
-
-    <div class="input-box">
-      <select id="batch" required>
-        <option value="" disabled selected>Select Batch</option>
-        <option value="IT1">IT1</option>
-        <option value="IT2">IT2</option>
-        <option value="AIML">AIML</option>
-      </select>
-    </div>
-
-    <!-- FIX: Added name attribute to email input so value is captured on submit -->
-    <div id="extraFields" class="hidden">
-      <div class="input-box">
-        <input type="email" id="email" name="email" placeholder="Email">
-      </div>
-    </div>
-
-    <button type="submit" id="submitBtn">Login</button>
-  </form>
-
-  <div class="toggle">
-    <span id="toggleText">Don't have an account?</span>
-    <span onclick="toggleMode()" id="toggleBtn">Sign Up</span>
-  </div>
-</div>
-
-<!-- FIX: Script moved to end of body so DOM is ready before JS runs (no defer needed here) -->
-<script src="login_front_script.js"></script>
 </body>
 </html>
