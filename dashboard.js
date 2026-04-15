@@ -77,12 +77,6 @@ async function fetchDashboard() {
     const response = await fetch(`http://127.0.0.1:8000/student-dashboard/${enrolmentNumber}`);
     const data = await response.json();
 
-<<<<<<< HEAD
-    if (data.error) {
-      alert(data.error);
-      return;
-    }
-=======
 //Date & Attendance Logic
 function getTodayDate() {
   return new Date().toISOString().split("T")[0]; // YYYY-MM-DD
@@ -137,7 +131,6 @@ markBtn.addEventListener("click", () => {
 
 //Initial Button State
 updateButtonState();
->>>>>>> 53f5b4d (Added mark attendence Button)
 
     loadDashboard(data);
     document.getElementById("welcomeText").textContent = `Welcome back, ${data.student.name}`;
