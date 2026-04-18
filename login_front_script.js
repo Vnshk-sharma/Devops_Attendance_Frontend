@@ -19,11 +19,14 @@ function login(event) {
     })
     .then(response => response.json())
     .then(data => {
-    // If login successful
     if (data.message.toLowerCase().includes("success")) {
-        window.location.href = "dashboard.html"; // ✅ uncomment this
+        // Save token or enrollment number for dashboard to use
+        localStorage.setItem("enrolment", document.getElementById("Enrollment_Number").value);
+        // If backend returns a token: localStorage.setItem("token", data.token);
+        
+        window.location.href = "dashboard.html";
     } else {
-        alert(data.message); // show error only on failure
+        alert(data.message);
     }
 })
     .catch(error => {
