@@ -204,9 +204,7 @@ markBtn.addEventListener("click", () => {
 
 //Initial Button State
 updateButtonState();
->>>>>>> 90e626710af5b5d9d9e8d76c522e5cd9989380b5
-
-    loadDashboard(data);
+  loadDashboard(data);
 
     // ✅ IMPORTANT
     updateButtonState(true); // disable by default, backend will confirm if already marked
