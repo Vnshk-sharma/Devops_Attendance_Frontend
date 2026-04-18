@@ -1,2 +1,2 @@
-https://frontenddevop.vercel.app/
+https://frontenddevop-eight.vercel.app/
 link for deployed frontend
