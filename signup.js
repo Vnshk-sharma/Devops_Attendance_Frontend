@@ -1,21 +1,22 @@
-function signup(e) {
+document.getElementById("signupForm").addEventListener("submit", signup);
+
+function signup(e){
     e.preventDefault();
 
-    const name = document.getElementById("Name_of_Student").value;
-    const enrollment = document.getElementById("Enrollment_Number").value;
-    const password = document.getElementById("Password").value;
-    const branch = document.getElementById("Branch").value;
-    const email = document.getElementById("College_Email").value;
+    const userData = {
+        name: document.getElementById("Name_of_Student").value,
+        enrollment: document.getElementById("Enrollment_Number").value,
+        semester: document.getElementById("Semester").value,
+        branch: document.getElementById("Branch").value,
+        email: document.getElementById("College_Email").value,
+        password: document.getElementById("Password").value
+    };
 
-    alert(
-        "Account Created 🎉\n\n" +
-        "Name: " + name + "\n" +
-        "Enrollment: " + enrollment + "\n" +
-        "Branch: " + branch + "\n" +
-        "Email: " + email
-    );
+    console.log(userData);
+
+    alert("Account Created Successfully 🎉");
 }
 
-function goToLogin() {
+function goToLogin(){
     window.location.href = "login.html";
 }
