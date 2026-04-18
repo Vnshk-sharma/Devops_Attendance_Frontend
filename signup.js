@@ -35,5 +35,5 @@ function signup(e){
 
 
 function goToLogin(){
-    window.location.href = "login.html";
+    window.location.href = "index.html";
 }

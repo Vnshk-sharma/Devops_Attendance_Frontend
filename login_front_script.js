@@ -1,6 +1,6 @@
 // Show Signup Page
 function goToSignup() {
-    window.location.href = "signup.html";
+    window.location.href = "/signup.html";
 }
 
 // 🔐 LOGIN FUNCTION
