@@ -1,5 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // your whole JS code here
+    const enrolment = localStorage.getItem("enrolment");
+    if (!enrolment) {
+        window.location.href = "index.html"; // redirect back if not logged in
+        return;
+    }
+
+    // rest of your dashboard code...
 
 //Update Cards
 function updateCards(data) {
