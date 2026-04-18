@@ -1,23 +1,34 @@
-let isLogin = true;
-
-function toggleMode() {
-  isLogin = !isLogin;
-
-  document.getElementById("title").innerText = isLogin ? "Login" : "Create Account";
-  document.getElementById("submitBtn").innerText = isLogin ? "Login" : "Sign Up";
-  document.getElementById("extraFields").classList.toggle("hidden");
-
-  document.getElementById("toggleText").innerText = isLogin 
-    ? "Don't have an account?" 
-    : "Already have an account?";
-
-  document.getElementById("toggleBtn").innerText = isLogin ? "Sign Up" : "Login";
+// Show Signup Page
+function goToSignup() {
+    window.location.href = "signup.html";
 }
 
-function handleSubmit(e) {
-  e.preventDefault();
-  const name = document.getElementById("name").value;
-  const batch = document.getElementById("batch").value;
+// 🔐 LOGIN FUNCTION
+function login(event) {
+    event.preventDefault();
 
-  alert(`Welcome ${name} 🚀\nBatch: ${batch}`);
+    fetch("https://devops-attendance-backend-8pri.onrender.com/login", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            enrolment: document.getElementById("Enrollment_Number").value,
+            password: document.getElementById("Password").value
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        alert(data.message);
+
+        // If login successful
+        if (data.message.toLowerCase().includes("success")) {
+            // Redirect later if needed
+            // window.location.href = "dashboard.html";
+        }
+    })
+    .catch(error => {
+        alert("Server Error ❌");
+        console.log(error);
+    });
 }
