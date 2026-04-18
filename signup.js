@@ -24,7 +24,7 @@ function signup(e){
         alert(data.message);
 
         // redirect to login after signup
-        window.location.href = "login.html";
+        window.location.href = "index.html";
     })
     .catch(err => {
         console.log(err);
