@@ -19,14 +19,13 @@ function login(event) {
     })
     .then(response => response.json())
     .then(data => {
-        alert(data.message);
-
-        // If login successful
-        if (data.message.toLowerCase().includes("success")) {
-            // Redirect later if needed
-            // window.location.href = "dashboard.html";
-        }
-    })
+    // If login successful
+    if (data.message.toLowerCase().includes("success")) {
+        window.location.href = "dashboard.html"; // ✅ uncomment this
+    } else {
+        alert(data.message); // show error only on failure
+    }
+})
     .catch(error => {
         alert("Server Error ❌");
         console.log(error);
