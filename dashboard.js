@@ -1,4 +1,7 @@
-// Update Cards
+document.addEventListener("DOMContentLoaded", () => {
+  // your whole JS code here
+
+//Update Cards
 function updateCards(data) {
   document.getElementById("totalClasses").textContent = data.total;
   document.getElementById("attended").textContent = data.attended;
@@ -6,7 +9,8 @@ function updateCards(data) {
   document.getElementById("percentage").textContent = data.percentage + "%";
 }
 
-// Alert Logic
+
+//Alert Logic
 function updateAlert(percentage) {
   const title = document.getElementById("alertTitle");
   const desc = document.getElementById("alertDesc");
@@ -20,7 +24,7 @@ function updateAlert(percentage) {
   }
 }
 
-// Chart Setup
+//Chart Setup
 const ctx = document.getElementById("attendanceChart");
 
 const chart = new Chart(ctx, {
@@ -39,7 +43,36 @@ const chart = new Chart(ctx, {
   }
 });
 
-// Load Data into UI
+
+//Date Logic
+function getTodayDate() {
+  return new Date().toISOString().split("T")[0];
+}
+
+function isAttendanceMarkedToday() {
+  const lastMarked = localStorage.getItem("attendanceDate");
+  return lastMarked === getTodayDate();
+}
+
+
+function updateButtonState(isMarked) {
+  const markBtn = document.getElementById("markAttendanceBtn");
+
+  if (!markBtn) return;
+
+  if (isMarked) {
+    markBtn.disabled = true;
+    markBtn.textContent = "Marked ✅";
+    markBtn.className = "bg-gray-400 text-white px-4 py-2 rounded-xl text-sm font-medium cursor-not-allowed";
+  } else {
+    markBtn.disabled = false;
+    markBtn.innerHTML = "Mark Attendance";
+    markBtn.className =
+      "bg-gradient-to-r from-indigo-500 to-blue-600 text-white px-4 py-2 rounded-xl hover:scale-105 transition";
+  }
+}
+
+//Load Dashboard
 function loadDashboard(data) {
   updateCards({
     total: data.overview.total_classes,
@@ -50,6 +83,7 @@ function loadDashboard(data) {
 
   updateAlert(data.overview.attendance_percentage);
 
+  // TEMP graph (backend later replace karega)
   const labels = ["Mon", "Tue", "Wed", "Thu"];
   const values = [
     data.overview.attendance_percentage,
@@ -63,7 +97,46 @@ function loadDashboard(data) {
   chart.update();
 }
 
-// Fetch from backend
+const markBtn = document.getElementById("markAttendanceBtn");
+
+if (markBtn) {
+  markBtn.addEventListener("click", async () => {
+    const enrolmentNumber = localStorage.getItem("enrolment_number");
+
+    try {
+      markBtn.disabled = true;
+      markBtn.textContent = "Marking...";
+
+      const response = await fetch("http://127.0.0.1:8000/mark-attendance", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ enrolment_number: enrolmentNumber })
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        showToast("Attendance marked ✅");
+
+        // ✅ reload fresh data from backend
+        fetchDashboard();
+
+      } else {
+        showToast(result.message || "Already marked today", "error");
+        updateButtonState(true); // already marked
+      }
+
+    } catch (err) {
+      console.error(err);
+      showToast("Server error", "error");
+      updateButtonState(false);
+    }
+  });
+}
+
+//Fetch Dashboard
 async function fetchDashboard() {
   const enrolmentNumber = localStorage.getItem("enrolment_number");
 
@@ -77,71 +150,23 @@ async function fetchDashboard() {
     const response = await fetch(`http://127.0.0.1:8000/student-dashboard/${enrolmentNumber}`);
     const data = await response.json();
 
-<<<<<<< HEAD
     if (data.error) {
       alert(data.error);
       return;
     }
-=======
-//Date & Attendance Logic
-function getTodayDate() {
-  return new Date().toISOString().split("T")[0]; // YYYY-MM-DD
-}
-
-function isAttendanceMarkedToday() {
-  const lastMarked = localStorage.getItem("attendanceDate");
-  return lastMarked === getTodayDate();
-}
-
-//Button State Logic
-function updateButtonState() {
-  const markBtn = document.getElementById("markAttendanceBtn");
-
-  if(!markBtn) return; // Safety check
-
-  if (isAttendanceMarkedToday()) {
-    markBtn.disabled = true;
-    markBtn.textContent = "Marked ✅";
-
-    markBtn.className =
-      "bg-gray-400 text-white px-4 py-2 rounded-xl text-sm font-medium cursor-not-allowed";
-  } else {
-    markBtn.disabled = false;
-    markBtn.textContent = "Mark Attendance";
-
-    markBtn.className =
-      "bg-gradient-to-r from-indigo-500 to-blue-600 text-white px-4 py-2 rounded-xl text-sm font-medium hover:scale-105 transition";
-  }
-}
-
-//Button Click Logic
-const markBtn = document.getElementById("markAttendanceBtn");
-
-markBtn.addEventListener("click", () => {
-  const today = getTodayDate();
-
-  // Save in localStorage (temporary)
-  localStorage.setItem("attendanceDate", today);
-
-  // Update stats
-  dummyData.total += 1;
-  dummyData.attended += 1;
-  dummyData.percentage = Math.round(
-    (dummyData.attended / dummyData.total) * 100
-  );
-
-  // Update UI
-  loadDashboard(dummyData);
-  updateButtonState();
-});
-
-//Initial Button State
-updateButtonState();
->>>>>>> 53f5b4d (Added mark attendence Button)
 
     loadDashboard(data);
+
+    // ✅ IMPORTANT
+    updateButtonState(true); // disable by default, backend will confirm if already marked
+// JSON Ensure backend se ye aa raha ho:   Agar nahi aa raha → button kabhi disable nahi hoga
+//{
+//  "is_marked_today": true
+//}
+
+
     document.getElementById("welcomeText").textContent = `Welcome back, ${data.student.name}`;
-document.getElementById("studentName").textContent = data.student.name;
+    document.getElementById("studentName").textContent = data.student.name;
 
   } catch (error) {
     console.error("Error fetching dashboard:", error);
@@ -149,4 +174,39 @@ document.getElementById("studentName").textContent = data.student.name;
   }
 }
 
-window.onload = fetchDashboard;
+window.onload = () => {
+  fetchDashboard();
+  
+};
+
+
+//Logout
+const logoutBtn = document.getElementById("logoutBtn");
+
+if (logoutBtn) {
+  logoutBtn.addEventListener("click", () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("attendanceDate");
+    window.location.href = "login.html";
+  });
+}
+
+function showToast(message, type = "success") {
+  const toast = document.getElementById("toast");
+
+  toast.textContent = message;
+
+  if (type === "success") {
+    toast.className = "fixed bottom-5 right-5 px-4 py-3 rounded-xl text-white bg-green-500 shadow-lg";
+  } else {
+    toast.className = "fixed bottom-5 right-5 px-4 py-3 rounded-xl text-white bg-red-500 shadow-lg";
+  }
+
+  toast.classList.remove("hidden");
+
+  setTimeout(() => {
+    toast.classList.add("hidden");
+  }, 3000);
+}
+
+});
