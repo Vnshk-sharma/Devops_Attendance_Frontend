@@ -5,17 +5,34 @@ function signup(e){
 
     const userData = {
         name: document.getElementById("Name_of_Student").value,
-        enrollment: document.getElementById("Enrollment_Number").value,
+        enrolment: document.getElementById("Enrollment_Number").value,
         semester: document.getElementById("Semester").value,
         branch: document.getElementById("Branch").value,
         email: document.getElementById("College_Email").value,
         password: document.getElementById("Password").value
     };
 
-    console.log(userData);
+    fetch("https://devops-attendance-backend-8pri.onrender.com/signup", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(userData)
+    })
+    .then(res => res.json())
+    .then(data => {
+        alert(data.message);
 
-    alert("Account Created Successfully 🎉");
+        // redirect to login after signup
+        window.location.href = "login.html";
+    })
+    .catch(err => {
+        console.log(err);
+        alert("Signup failed ❌");
+    });
 }
+
+
 
 function goToLogin(){
     window.location.href = "login.html";
