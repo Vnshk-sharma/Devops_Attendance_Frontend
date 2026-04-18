@@ -6,54 +6,63 @@
 <title>Sign Up</title>
 
 <link rel="stylesheet" href="signup.css">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
+<div class="background-glow glow1"></div>
+<div class="background-glow glow2"></div>
+
 <div class="container">
-  <h2>Create Account</h2>
 
-  <form onsubmit="signup(event)">
-
-    <!-- Name -->
-    <div class="input-box">
-      <input type="text" id="Name_of_Student" placeholder="Full Name" required>
+    <div class="left-panel">
+        <h1>Create Account</h1>
+        <p>Join the Classroom Attendance Portal</p>
     </div>
 
-    <!-- Enrollment -->
-    <div class="input-box">
-      <input type="text" id="Enrollment_Number" placeholder="Enrollment Number" required>
+    <div class="right-panel">
+        <form id="signupForm">
+
+            <div class="input-box">
+                <input type="text" id="Name_of_Student" placeholder="Full Name" required>
+            </div>
+
+            <div class="input-box">
+                <input type="text" id="Enrollment_Number" placeholder="Enrollment Number" required>
+            </div>
+
+            <div class="input-box">
+                <input type="text" id="Semester" placeholder="Semester" required>
+            </div>
+
+            <div class="input-box">
+                <select id="Branch" required>
+                    <option value="">Select Branch</option>
+                    <option value="IT1">IT1</option>
+                    <option value="IT2">IT2</option>
+                    <option value="AIML">AIML</option>
+                </select>
+            </div>
+
+            <div class="input-box">
+                <input type="email" id="College_Email" placeholder="College Email" required>
+            </div>
+
+            <div class="input-box">
+                <input type="password" id="Password" placeholder="Password" required>
+            </div>
+
+            <button type="submit">Sign Up</button>
+
+            <p class="bottom-text">
+                Already have an account?
+                <span onclick="goToLogin()">Login</span>
+            </p>
+
+        </form>
     </div>
 
-    <!-- Password -->
-    <div class="input-box">
-      <input type="password" id="Password" placeholder="Password" required>
-    </div>
-
-    <!-- Branch -->
-    <div class="input-box">
-      <select id="Branch" required>
-        <option value="" disabled selected>Select Batch</option>
-        <option>IT1</option>
-        <option>IT2</option>
-        <option>AIML</option>
-      </select>
-    </div>
-
-    <!-- Email -->
-    <div class="input-box">
-      <input type="email" id="College_Email" placeholder="College Email" required>
-    </div>
-
-    <button type="submit">Sign Up</button>
-
-  </form>
-
-  <div class="link">
-    Already have an account?
-    <span onclick="goToLogin()">Login</span>
-  </div>
 </div>
 
 <script src="signup.js"></script>
