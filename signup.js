@@ -5,8 +5,8 @@ function signup(e){
 
     const userData = {
         name: document.getElementById("Name_of_Student").value,
-        enrolment: document.getElementById("Enrollment_Number").value,
-        semester: document.getElementById("Semester").value,
+        enrolment: parseInt(document.getElementById("Enrollment_Number").value),
+        semester: parseInt(document.getElementById("Semester").value),
         branch: document.getElementById("Branch").value,
         email: document.getElementById("College_Email").value,
         password: document.getElementById("Password").value

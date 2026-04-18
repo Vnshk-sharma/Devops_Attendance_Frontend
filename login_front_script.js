@@ -13,7 +13,7 @@ function login(event) {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            enrolment: document.getElementById("Enrollment_Number").value,
+            enrolment: parseInt(document.getElementById("Enrollment_Number").value),
             password: document.getElementById("Password").value
         })
     })
