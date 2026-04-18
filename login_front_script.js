@@ -1,46 +1,34 @@
-
-function showSignup() {
-    document.getElementById("loginForm").style.display = "none";
-    document.getElementById("signupForm").style.display = "block";
+// Show Signup Page
+function goToSignup() {
+    window.location.href = "signup.html";
 }
 
-function showLogin() {
-    document.getElementById("signupForm").style.display = "none";
-    document.getElementById("loginForm").style.display = "block";
-}
+// 🔐 LOGIN FUNCTION
+function login(event) {
+    event.preventDefault();
 
-// 🔐 LOGIN
-function login() {
     fetch("https://devops-attendance-backend-8pri.onrender.com/login", {
-
         method: "POST",
-        headers: {"Content-Type": "application/json"},
+        headers: {
+            "Content-Type": "application/json"
+        },
         body: JSON.stringify({
-            enrolment: document.getElementById("loginEnroll").value,
-            password: document.getElementById("loginPassword").value
+            enrolment: parseInt(document.getElementById("Enrollment_Number").value),
+            password: document.getElementById("Password").value
         })
     })
-    .then(res => res.json())
-    .then(data => alert(data.message));
-}
+    .then(response => response.json())
+    .then(data => {
+        alert(data.message);
 
-// 📝 SIGNUP
-function signup() {
-
-    fetch("https://devops-attendance-backend-8pri.onrender.com/signup", {
-
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({
-            name: document.getElementById("name").value,
-            enrolment: document.getElementById("enrolment").value,
-            branch: document.getElementById("branch").value,
-            email: document.getElementById("email").value,
-            semester: document.getElementById("semester").value,
-            password: document.getElementById("password").value
-        })
+        // If login successful
+        if (data.message.toLowerCase().includes("success")) {
+            // Redirect later if needed
+            // window.location.href = "dashboard.html";
+        }
     })
-    .then(res => res.json())
-    .then(data => alert(data.message));
+    .catch(error => {
+        alert("Server Error ❌");
+        console.log(error);
+    });
 }
-

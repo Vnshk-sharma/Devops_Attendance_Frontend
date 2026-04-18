@@ -1,0 +1,152 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Inter',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#0f172a,#111827,#1e293b);
+    overflow:hidden;
+}
+
+.background-glow{
+    position:absolute;
+    width:300px;
+    height:300px;
+    border-radius:50%;
+    filter:blur(100px);
+    opacity:0.4;
+}
+
+.glow1{
+    background:#06b6d4;
+    top:10%;
+    left:10%;
+}
+
+.glow2{
+    background:#8b5cf6;
+    bottom:10%;
+    right:10%;
+}
+
+.container{
+    width:900px;
+    max-width:95%;
+    display:flex;
+    border-radius:22px;
+    overflow:hidden;
+    background:rgba(255,255,255,0.07);
+    backdrop-filter:blur(20px);
+    box-shadow:0 25px 60px rgba(0,0,0,0.45);
+}
+
+.left-panel{
+    width:40%;
+    padding:50px 35px;
+    color:white;
+    background:linear-gradient(160deg,#2563eb,#7c3aed);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.left-panel h1{
+    font-size:38px;
+    margin-bottom:12px;
+}
+
+.left-panel p{
+    font-size:16px;
+    color:#dbeafe;
+    line-height:1.6;
+}
+
+.right-panel{
+    width:60%;
+    padding:40px;
+}
+
+.input-box{
+    margin-bottom:16px;
+}
+
+input,select{
+    width:100%;
+    padding:14px 15px;
+    border:none;
+    outline:none;
+    border-radius:12px;
+    background:rgba(255,255,255,0.08);
+    color:white;
+    font-size:15px;
+}
+
+input::placeholder{
+    color:#cbd5e1;
+}
+
+select{
+    color:#cbd5e1;
+}
+
+input:focus,select:focus{
+    background:rgba(255,255,255,0.12);
+    box-shadow:0 0 0 2px #38bdf8;
+}
+
+button{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:12px;
+    background:linear-gradient(135deg,#06b6d4,#2563eb);
+    color:white;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    margin-top:8px;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:translateY(-2px);
+    box-shadow:0 12px 25px rgba(37,99,235,0.35);
+}
+
+.bottom-text{
+    margin-top:18px;
+    color:#cbd5e1;
+    text-align:center;
+}
+
+.bottom-text span{
+    color:#38bdf8;
+    cursor:pointer;
+    font-weight:600;
+}
+
+.bottom-text span:hover{
+    text-decoration:underline;
+}
+
+@media(max-width:800px){
+
+.container{
+    flex-direction:column;
+}
+
+.left-panel,
+.right-panel{
+    width:100%;
+}
+
+.left-panel{
+    text-align:center;
+}
+}
