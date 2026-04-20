@@ -14,6 +14,7 @@ function login(event) {
         },
         body: JSON.stringify({
             enrolment: parseInt(document.getElementById("Enrollment_Number").value),
+            localStorage.setItem("Enrollment_Number", Enrollment_Number);
             password: document.getElementById("Password").value
         })
     })
