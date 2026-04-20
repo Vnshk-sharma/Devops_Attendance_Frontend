@@ -148,7 +148,7 @@ async function fetchDashboard() {
 
   if (!enrolmentNumber) {
     alert("No student logged in");
-    window.location.href = "login_front.html";
+    window.location.href = "index.html";
     return;
   }
 
@@ -242,7 +242,7 @@ if (logoutBtn) {
   logoutBtn.addEventListener("click", () => {
     localStorage.removeItem("token");
     localStorage.removeItem("attendanceDate");
-    window.location.href = "login.html";
+    window.location.href = "index.html";
   });
 }
 
