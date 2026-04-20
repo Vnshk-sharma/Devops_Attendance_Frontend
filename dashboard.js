@@ -113,7 +113,7 @@ if (markBtn) {
       markBtn.disabled = true;
       markBtn.textContent = "Marking...";
 
-      const response = await fetch("http://127.0.0.1:8000/mark-attendance", {
+      const response = await fetch("https://devops-attendance-backend-8pri.onrender.com/mark-attendance", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -153,7 +153,7 @@ async function fetchDashboard() {
   }
 
   try {
-    const response = await fetch(`http://127.0.0.1:8000/student-dashboard/${enrolmentNumber}`);
+    const response = await fetch(`https://devops-attendance-backend-8pri.onrender.com/student-dashboard/${enrolmentNumber}`);
     const data = await response.json();
 
 //Date & Attendance Logic
